@@ -17,6 +17,7 @@
               <th scope="col">Layanan WO</th>
               <th scope="col">Detail Layanan WO</th>
               <th scope="col">Harga</th>
+              <th scope="col">Kapasitas</th>
               <th scope="col">Action</th>
             </tr>
           </thead>
@@ -29,6 +30,7 @@
                 <td><?= $lwo['layanan']; ?></td>
                 <td><?= $lwo['detail']; ?></td>
                 <td>Rp <?= number_format($lwo['harga'], 0, ',', '.'); ?></td>
+                <td><?= $lwo['kapasitas']; ?></td>
                 <td>
                   <a href="<?= base_url('datawo/hapuslayananwo/'); ?><?= $lwo['id_layanan_wo'] ?>" class="btn btn-danger">Hapus Layanan WO</a>
                   <a href="<?= base_url('datawo/editlayananwo/'); ?><?= $lwo['id_layanan_wo'] ?>" class="btn btn-success">Edit Layanan WO</a>

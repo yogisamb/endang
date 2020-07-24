@@ -71,11 +71,29 @@
   <!-- Jumbotron -->
   <div class="jumbotron jumbotron-fluid">
     <div class="container">
-      <h1 class="display-4">Masukkan Filter Harga<span>WO</span></h1>
+      <h1 class="display-4">Masukkan Filter<span> WO</span></h1>
       <form action="<?= base_url('landingpage'); ?>" method="POST">
         <div class="form-group">
-          <label for="exampleInputPassword1">Harga</label>
-          <input type="number" class="form-control" id="exampleInputPassword1" placeholder="Harga" name="harga">
+          <select class="form-control" id="harga" name="harga">
+            <?php
+            $datawo = $this->db->get('filterwo')->result_array();
+            ?>
+            <option value="a">Pilih Opsi</option>
+            <?php foreach ($datawo as $d) : ?>
+              <option value="<?= $d['id_filter']; ?>"><?= $d['nama_filter']; ?></option>
+            <?php endforeach; ?>
+          </select>
+        </div>
+        <div class="form-group">
+          <select class="form-control" id="kapasitas" name="kapasitas">
+            <?php
+            $datawo_2 = $this->db->get('filter_2')->result_array();
+            ?>
+            <option value="a">Pilih Opsi</option>
+            <?php foreach ($datawo_2 as $d2) : ?>
+              <option value="<?= $d2['id_filter']; ?>"><?= $d2['nama_filter']; ?></option>
+            <?php endforeach; ?>
+          </select>
         </div>
         <button type="submit" class="btn btn-primary tombol">Get Started</button>
       </form>
@@ -111,6 +129,9 @@
 
     <!-- barang -->
     <div class="barang">
+      <h3>
+        <center>Filter : <?= $filter ?> dan <?= $filter2 ?></center>
+      </h3>
       <div class="row">
         <?php foreach ($layanan as $l) : ?>
           <?php

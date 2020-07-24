@@ -29,6 +29,10 @@
             <label for="exampleInputPassword1">Harga Layanan WO</label>
             <input type="number" class="form-control" id="exampleInputPassword1" id="harga" name="harga" value="<?= $lwo['harga']; ?>">
           </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Kapasitas layanan WO</label>
+            <input type="number" class="form-control" id="exampleInputPassword1" id="kapasitas" name="kapasitas" value="<?= $lwo['kapasitas']; ?>">
+          </div>
         </div>
         <!-- /.card-body -->
         <div class="card-footer">

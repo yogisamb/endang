@@ -149,6 +149,7 @@ class Datawo extends CI_Controller
     $this->form_validation->set_rules('layanan', 'Layanan', 'required');
     $this->form_validation->set_rules('detail', 'Detail', 'required');
     $this->form_validation->set_rules('harga', 'Harga', 'required|trim');
+    $this->form_validation->set_rules('kapasitas', 'Kapasitas', 'required|trim');
 
     if ($this->form_validation->run() == false) {
       $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
@@ -163,6 +164,7 @@ class Datawo extends CI_Controller
         'layanan' => $input['layanan'],
         'harga' => $input['harga'],
         'detail' => $input['detail'],
+        'kapasitas' => $input['kapasitas']
       ];
       $this->db->insert('layanan_wo', $data);
       $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Congratulation! Layanan WO sudah ditambah!</div>');
@@ -177,6 +179,7 @@ class Datawo extends CI_Controller
     $this->form_validation->set_rules('layanan', 'Layanan', 'required');
     $this->form_validation->set_rules('detail', 'Detail', 'required');
     $this->form_validation->set_rules('harga', 'Harga', 'required|trim');
+    $this->form_validation->set_rules('kapasitas', 'Kapasitas', 'required|trim');
 
     if ($this->form_validation->run() == false) {
       $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
@@ -192,6 +195,7 @@ class Datawo extends CI_Controller
         'layanan' => $input['layanan'],
         'harga' => $input['harga'],
         'detail' => $input['detail'],
+        'kapasitas' => $input['kapasitas']
       ];
       $this->db->where('id_layanan_wo =', $id_layanan_wo);
       $this->db->update('layanan_wo', $data);
@@ -200,5 +204,15 @@ class Datawo extends CI_Controller
       $lwo = $this->db->get('layanan_wo')->row_array();
       redirect('datawo/layananwo/' . $lwo['id_wo']);
     }
+  }
+
+  public function hapuslayananwo($id_layanan_wo)
+  {
+    $lwo = $this->db->where('id_layanan_wo =', $id_layanan_wo);
+    $lwo = $this->db->get('layanan_wo')->row_array();
+    $this->db->where('id_layanan_wo', $id_layanan_wo);
+    $this->db->delete('layanan_wo');
+    $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Congratulation! Layanan WO sudah dihapus!</div>');
+    redirect('datawo/layananwo/' . $lwo['id_wo']);
   }
 }
